@@ -3,10 +3,11 @@ require 'support/graph'
 
 RSpec.describe Transformer::Caster::SpaceHeater do
   let(:dataset) { Atlas::Dataset::Derived.find(:ameland) }
+  let(:graph) {   Graph.new('space_heater').build }
   let(:analyzer) {
     Transformer::Caster::SpaceHeater.analyze(
       dataset,
-      nil,
+      graph,
       {
         'number_of_residences' => 10,
         'percentage_of_old_residences' => 92.62
@@ -19,11 +20,6 @@ RSpec.describe Transformer::Caster::SpaceHeater do
   }
 
   before do
-    expect_any_instance_of(Atlas::Runner)
-      .to receive(:calculate).at_least(:once).and_return(
-        Graph.new('space_heater').build
-      )
-
     expect_any_instance_of(Transformer::Caster::Heater)
       .to receive(:carriers).at_least(:once).and_return(
         %w(electricity network_gas steam_hot_water)

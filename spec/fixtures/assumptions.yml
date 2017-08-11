@@ -16,6 +16,11 @@
   :transport_plane_using_gasoline: 1
   :transport_plane_using_kerosene: 1
 
+  :test_carrier: 1
+  :test_static: 1
+  :test_heatpump:
+    :input: :electricity
+
   # Input division
   :agriculture_geothermal: 1
   :buildings_collective_geothermal: 1
@@ -28,12 +33,12 @@
   :households_cooling_airconditioning_electricity: 4
   :households_cooling_heatpump_air_water_electricity: 4.5
   :households_cooling_heatpump_ground_water_electricity: 19
-  :households_space_heater_heatpump_air_water_electricity: 1
-  :households_space_heater_heatpump_ground_water_electricity: 1
-  :households_space_heater_hybrid_heatpump_air_water_electricity: 1
-  :households_water_heater_heatpump_air_water_electricity: 1
-  :households_water_heater_heatpump_ground_water_electricity: 1
-  :households_water_heater_hybrid_heatpump_air_water_electricity: 1
+  :households_space_heater_heatpump_air_water_electricity: 4.5
+  :households_space_heater_heatpump_ground_water_electricity: 4.8
+  :households_space_heater_hybrid_heatpump_air_water_electricity: 4.5
+  :households_water_heater_heatpump_air_water_electricity: 3
+  :households_water_heater_heatpump_ground_water_electricity: 3
+  :households_water_heater_hybrid_heatpump_air_water_electricity: 3
   :agriculture_heatpump_water_water_ts_electricity: 1
 
   #
@@ -66,14 +71,14 @@
   :households_lighting_efficient_fluorescent_electricity: 0.25
   :households_lighting_incandescent_electricity: 0.05
   :households_lighting_led_electricity: 0.5
-  :households_space_heater_coal: 1
-  :households_space_heater_combined_network_gas: 1
-  :households_space_heater_crude_oil: 1
+  :households_space_heater_coal: 0.8
+  :households_space_heater_combined_network_gas: 1.067
+  :households_space_heater_crude_oil: 0.85
   :households_space_heater_district_heating_steam_hot_water: 1
   :households_space_heater_electricity: 1
-  :households_space_heater_micro_chp_network_gas: 1
-  :households_space_heater_network_gas: 1
-  :households_space_heater_wood_pellets: 1
+  :households_space_heater_micro_chp_network_gas: 0.88
+  :households_space_heater_network_gas: 0.8
+  :households_space_heater_wood_pellets: 0.82
   :households_water_heater_coal: 1
   :households_water_heater_combined_network_gas: 1
   :households_water_heater_crude_oil: 1
