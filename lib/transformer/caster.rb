@@ -11,8 +11,7 @@ module Transformer
       validator = AttributeValidator.new(dataset_edits)
 
       unless validator.valid?
-        raise ArgumentError,
-          "missing attributes #{ validator.message } for analyzes"
+        raise ArgumentError, validator.message
       end
 
       casts = [

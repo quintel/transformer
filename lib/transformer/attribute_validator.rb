@@ -11,7 +11,7 @@ module Transformer
     end
 
     def message
-      missing.keys.join(', ')
+      "missing attributes #{ missing.keys.join(', ') } for analyzes"
     end
 
     private
