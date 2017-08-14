@@ -1,5 +1,7 @@
 module Transformer
   class AttributeValidator
+    EDITABLE_ATTRIBUTES = YAML.load_file(Pathname.new(Transformer.root).join('attributes.yml')).freeze
+
     def initialize(edits)
       @edits = edits
     end
@@ -15,7 +17,7 @@ module Transformer
     private
 
     def missing
-      DatasetCast::EDITABLE_ATTRIBUTES.select do |key, opts|
+      EDITABLE_ATTRIBUTES.select do |key, opts|
         opts['mandatory'] && @edits[key].blank?
       end
     end
