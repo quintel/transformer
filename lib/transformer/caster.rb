@@ -14,7 +14,15 @@ module Transformer
         raise ArgumentError, validator.message
       end
 
-      casts = [
+      graph = Atlas::Runner.new(dataset).calculate
+
+      casts.reduce({}) do |object, analyzer|
+        (casts.last == analyzer ? {} : object).merge(analyzer.analyze(dataset, graph, dataset_edits.symbolize_keys, object))
+      end
+    end
+
+    def self.casts
+      [
         Caster::ElectricityConsumption,
         Caster::Lighting,
         Caster::Appliances,
@@ -32,12 +40,6 @@ module Transformer
         Caster::NullAttributes,
         Caster::ToAtlasAttribute
       ].freeze
-
-      graph = Atlas::Runner.new(dataset).calculate
-
-      casts.reduce({}) do |object, analyzer|
-        (casts.last == analyzer ? {} : object).merge(analyzer.analyze(dataset, graph, dataset_edits.symbolize_keys, object))
-      end
     end
   end
 end
