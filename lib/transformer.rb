@@ -8,6 +8,8 @@ require 'virtus'
 
 require_relative 'transformer/base'
 require_relative 'transformer/attribute_validator'
+require_relative 'transformer/dataset_cast/households'
+require_relative 'transformer/dataset_cast/supply'
 require_relative 'transformer/dataset_cast'
 require_relative 'transformer/caster'
 require_relative 'transformer/caster/assumptions'
