@@ -2,7 +2,7 @@ module Transformer
   class DatasetCast
     module Agriculture
       def self.included(model)
-        model.attribute :has_agriculture, Boolean, group: :agriculture_toggle
+        model.attribute :has_agriculture, Virtus::Attribute::Boolean, group: :agriculture_toggle
 
         model.attribute :agriculture_burner_crude_oil_share, Float,
           group: :agriculture_grouped, unit: '%'

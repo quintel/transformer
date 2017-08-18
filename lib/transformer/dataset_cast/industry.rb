@@ -2,7 +2,7 @@ module Transformer
   class DatasetCast
     module Industry
       def self.included(model)
-        model.attribute :has_industry, Boolean, group: :industry_toggle
+        model.attribute :has_industry, Virtus::Attribute::Boolean, group: :industry_toggle
 
         model.attribute :industry_aluminium_production, Float,
           group: :industry_grouped, unit: '%'
