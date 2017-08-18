@@ -1,7 +1,6 @@
 require 'bundler'
 Bundler.setup(:default)
 
-require 'pry'
 require 'yaml'
 require 'atlas'
 require 'virtus'
