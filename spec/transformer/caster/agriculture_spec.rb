@@ -2,42 +2,43 @@ require 'spec_helper'
 
 describe Transformer::Caster::Agriculture do
   let(:dataset)  { Atlas::Dataset::Derived.find(:ameland) }
-  let(:analyzer) { Transformer::Caster::Agriculture.new(dataset, nil, edits, {}) }
 
-  describe 'has_agriculture default' do
-    let(:edits) { { } }
-
-    it 'has industry is false' do
-      expect(analyzer.has_agriculture).to be false
-    end
-  end
+  let(:analyzer) {
+    Transformer::Caster::Agriculture.new(
+      dataset_cast, Transformer::Caster::Template.new)
+  }
 
   describe "toggling off" do
-    let(:edits) { {
+    let(:dataset_cast) { Transformer::DatasetCast.new(
       has_agriculture: false,
-      agriculture_useful_demand_electricity: 5.0
-    } }
-
-    it 'has industry is false' do
-      expect(analyzer.has_agriculture).to be false
-    end
+      graph_methods: {
+        agriculture_useful_demand_electricity_demand: 5.0
+      }
+    ) }
 
     it 'all industry related initializer inputs' do
       expect(analyzer.analyze
-        .fetch(:agriculture_useful_demand_electricity)).to eq(0)
+        .get(:graph_values)
+        .fetch(:agriculture_useful_demand_electricity)
+        .fetch('demand')
+      ).to eq(0)
     end
   end
 
   describe "toggling on" do
-    let(:edits) { {
+    let(:dataset_cast) { Transformer::DatasetCast.new(
       has_agriculture: true,
-      agriculture_useful_demand_electricity: 5.0
-    } }
+      graph_methods: {
+        agriculture_useful_demand_electricity_demand: 5.0
+      }
+    ) }
 
-    it 'has industry is false' do
-      expect(analyzer.has_agriculture).to be true
+    it 'all industry related initializer inputs' do
+      expect(analyzer.analyze
+        .get(:graph_values)
+        .fetch(:agriculture_useful_demand_electricity)
+        .fetch('demand')
+      ).to eq(5.0)
     end
-
-    describe 'sectors'
   end
 end

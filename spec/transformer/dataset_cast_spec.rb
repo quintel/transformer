@@ -1,7 +1,16 @@
 require 'spec_helper'
 
-describe Transformer::DatasetCast do
-  it 'sets a dataset cast' do
-    expect(Transformer::DatasetCast.new).to be_a(Transformer::DatasetCast)
+module Transformer
+  describe DatasetCast do
+    it "initializes a dataset cast" do
+      cast = DatasetCast.new(
+        graph_methods: {
+          agriculture_useful_demand_electricity_demand: 5.0
+        }
+      )
+
+      expect(
+        cast.graph_methods.agriculture_useful_demand_electricity_demand).to eq(5.0)
+    end
   end
 end

@@ -2,42 +2,44 @@ require 'spec_helper'
 
 describe Transformer::Caster::Industry do
   let(:dataset)  { Atlas::Dataset::Derived.find(:ameland) }
-  let(:analyzer) { Transformer::Caster::Industry.new(dataset, nil, edits, {}) }
-
-  describe 'has_industry default' do
-    let(:edits) { { } }
-
-    it 'has industry is false' do
-      expect(analyzer.has_industry).to be false
-    end
-  end
+  let(:analyzer) {
+    Transformer::Caster::Industry.new(
+      dataset_cast,
+      Transformer::Caster::Template.new
+    )
+  }
 
   describe "toggling off" do
-    let(:edits) { {
+    let(:dataset_cast) { Transformer::DatasetCast.new(
       has_industry: false,
-      industry_useful_demand_for_chemical_aggregated_industry: 5.0
-    } }
-
-    it 'has industry is false' do
-      expect(analyzer.has_industry).to be false
-    end
+      graph_methods: {
+        industry_useful_demand_for_chemical_aggregated_industry_demand: 5.0
+      }
+    ) }
 
     it 'all industry related initializer inputs' do
       expect(analyzer.analyze
-        .fetch(:industry_useful_demand_for_chemical_aggregated_industry)).to eq(0)
+        .get(:graph_values)
+        .fetch(:industry_useful_demand_for_chemical_aggregated_industry)
+        .fetch('demand')
+      ).to eq(0)
     end
   end
 
   describe "toggling on" do
-    let(:edits) { {
+    let(:dataset_cast) { Transformer::DatasetCast.new(
       has_industry: true,
-      industry_useful_demand_for_chemical_aggregated_industry: 5.0
-    } }
+      graph_methods: {
+        industry_useful_demand_for_chemical_aggregated_industry_demand: 5.0
+      }
+    ) }
 
-    it 'has industry is false' do
-      expect(analyzer.has_industry).to be true
+    it 'all industry related initializer inputs' do
+      expect(analyzer.analyze
+        .get(:graph_values)
+        .fetch(:industry_useful_demand_for_chemical_aggregated_industry)
+        .fetch('demand')
+      ).to eq(5.0)
     end
-
-    describe 'sectors'
   end
 end

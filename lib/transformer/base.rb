@@ -6,8 +6,4 @@ module Transformer
   def self.root=(path)
     @root = path
   end
-
-  def self.assumptions_path
-    @assumptions_path ||= Pathname.new(root).join('assumptions.yml')
-  end
 end
