@@ -16,5 +16,16 @@ module Transformer
 
     validates_presence_of :number_of_residences
     validates :number_of_residences, numericality: { greater_than: 0 }
+    validate :graph_methods_keys
+
+    private
+
+    def graph_methods_keys
+      (graph_methods || {}).each_pair do |method, value|
+        unless GraphMethods.all.key?(method)
+          errors.add(:graph_methods, "graph method '#{ method }' does not exist")
+        end
+      end
+    end
   end
 end
