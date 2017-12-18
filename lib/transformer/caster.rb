@@ -24,7 +24,7 @@ module Transformer
 
     def self.filter(dataset_cast_attributes)
       dataset_cast_attributes.each_with_object({}) do |(key, val), obj|
-        if GraphMethods.all.keys.include?(key.to_sym)
+        if GraphMethods.all.key?(key.to_sym)
           obj[:graph_methods] ||= {}
           obj[:graph_methods][key] = val
         else

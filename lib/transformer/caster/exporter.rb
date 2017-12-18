@@ -1,11 +1,9 @@
 module Transformer
   module Caster
     class Exporter < Base
-      GraphMethodValue = Struct.new(:method, :key, :value)
-
       def analyze
-        exportable_attributes.map do |key, opts|
-          @template.add_graph_value(opts.key, opts.method, opts.value)
+        each_exportable_attribute do |graph_method, value|
+          @template.add_graph_value(graph_method, value)
         end
 
         @template
@@ -13,20 +11,14 @@ module Transformer
 
       private
 
-      def exportable_attributes
-        result = {}
-
+      def each_exportable_attribute
         @dataset_cast.graph_methods.each_pair do |key, value|
           opts = GraphMethods.all[key]
 
-          if opts && value
-            result[key] = GraphMethodValue.new(opts.export_method,
-                                               opts.export_key,
-                                               value)
+          if value && (opts = GraphMethods.all[key])
+            yield(opts, value)
           end
         end
-
-        result
       end
     end
   end

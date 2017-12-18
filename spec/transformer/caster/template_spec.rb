@@ -26,7 +26,15 @@ module Transformer
       it "graph methods" do
         template = Caster::Template.new
 
-        template.add_graph_value(:households_final_demand_for_electricity, :demand, 5)
+        template.add_graph_value(
+          GraphMethods::GraphAttribute.new(
+            Float,
+            'households',
+            :households_final_demand_for_electricity,
+            :demand
+          ),
+          5
+        )
 
         expect(template.to_h).to eq({
           area: { },

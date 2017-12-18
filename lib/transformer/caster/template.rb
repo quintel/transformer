@@ -5,11 +5,13 @@ module Transformer
         @template = { area: {}, graph_values: {} }
       end
 
-      def add_graph_value(key, method, value)
+      def add_graph_value(graph_method, value)
         methods = @template.fetch(:graph_values)
 
-        @template.fetch(:graph_values)[key] ||= {}
-        @template.fetch(:graph_values).fetch(key).store(method, value)
+        @template.fetch(:graph_values)[graph_method.export_key] ||= {}
+        @template.fetch(:graph_values)
+          .fetch(graph_method.export_key)
+          .store(graph_method.export_method, value)
       end
 
       def add_area(key, value)

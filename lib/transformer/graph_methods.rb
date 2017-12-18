@@ -1,6 +1,6 @@
 module Transformer
   module GraphMethods
-    GraphAttribute = Struct.new(:type, :export_key, :export_method)
+    GraphAttribute = Struct.new(:type, :sector, :export_key, :export_method)
 
     module_function
 
@@ -12,7 +12,7 @@ module Transformer
       Atlas::Node.all.each_with_object({}) do |node, result|
         node.graph_methods.each do |method|
           result[:"#{ node.key }_#{ method }"] =
-            GraphAttribute.new(Float, node.key, method)
+            GraphAttribute.new(Float, node.sector, node.key, method)
         end
       end
     end
@@ -21,7 +21,7 @@ module Transformer
       Atlas::Edge.all.each_with_object({}) do |edge, result|
         edge.graph_methods.each do |method|
           result[:"#{ edge.supplier }_#{ edge.consumer }_#{ method }"] =
-            GraphAttribute.new(Float, edge.key, method)
+            GraphAttribute.new(Float, nil, edge.key, method)
         end
       end
     end

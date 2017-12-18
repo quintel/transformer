@@ -2,10 +2,10 @@ module Transformer
   module Caster
     class SectorSwitcher < Base
       def analyze
-        nodes.each do |node|
-          value = @dataset_cast.graph_methods.public_send("#{ node.key }_demand")
+        graph_methods.each_pair do |key, graph_method|
+          value = @dataset_cast.graph_methods.public_send(key)
 
-          @template.add_graph_value(node.key, 'demand', (value && has_sector? ? value : 0))
+          @template.add_graph_value(graph_method, (value && has_sector? ? value : 0))
         end
 
         @template
@@ -22,10 +22,10 @@ module Transformer
           "every subclass of SectorSwitcher needs a sector"
       end
 
-      def nodes
-        Atlas::Node.all.select do |node|
-          node.sector == sector &&
-            node.graph_methods.include?('demand')
+      def graph_methods
+        GraphMethods.all.select do |key, graph_method|
+          graph_method.sector == sector &&
+            graph_method.export_method == 'demand'
         end
       end
     end
