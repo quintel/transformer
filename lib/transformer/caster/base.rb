@@ -27,15 +27,6 @@ module Transformer
       def analyze
         raise NotImplentedError, "base class '#{ self.class }' misses analyze method"
       end
-
-      private
-
-      def ratio_houses
-        {
-          old: number_of_old_residences / number_of_residences,
-          new: number_of_new_residences / number_of_residences
-        }
-      end
     end
   end
 end
