@@ -5,39 +5,41 @@ module Transformer
     #
     # Arguments:
     # - dataset       = Atlas::Dataset
-    # - dataset_edits = Hash[<key> => Float]
+    # - dataset_cast = Hash[<key> => Float]
     #
-    def self.cast(dataset, dataset_edits)
-      validator = AttributeValidator.new(dataset_edits)
+    def self.cast(dataset, dataset_cast_attributes)
+      dataset_cast = DatasetCast.new(filter(dataset_cast_attributes))
 
-      unless validator.valid?
-        raise ArgumentError, validator.message
+      unless dataset_cast.valid?
+        raise ArgumentError, dataset_cast.errors.full_messages.join(', ')
       end
 
-      casts = [
-        Caster::ElectricityConsumption,
-        Caster::Lighting,
-        Caster::Appliances,
-        Caster::GasConsumption,
-        Caster::Cooking,
-        Caster::Cooling,
-        Caster::WaterHeater,
-        Caster::SpaceHeater,
-        Caster::RoofSurfaceAvailableForPV,
-        Caster::Transport,
-        Caster::Buildings,
+      Caster::ToAtlasAttribute
+        .filter(dataset_cast, casts.reduce(Template.new) do |object, analyzer|
+          analyzer.analyze(dataset_cast, object)
+        end)
+    end
+
+    private
+
+    def self.filter(dataset_cast_attributes)
+      dataset_cast_attributes.each_with_object({}) do |(key, val), obj|
+        if GraphMethods.all.key?(key.to_sym)
+          obj[:graph_methods] ||= {}
+          obj[:graph_methods][key] = val
+        else
+          obj[key] = val
+        end
+      end
+    end
+
+    def self.casts
+      [
+        Caster::Exporter,
+        Caster::AreaAttributes,
         Caster::Industry,
-        Caster::Agriculture,
-        Caster::EnergySector,
-        Caster::NullAttributes,
-        Caster::ToAtlasAttribute
+        Caster::Agriculture
       ].freeze
-
-      graph = Atlas::Runner.new(dataset).calculate
-
-      casts.reduce({}) do |object, analyzer|
-        (casts.last == analyzer ? {} : object).merge(analyzer.analyze(dataset, graph, dataset_edits.symbolize_keys, object))
-      end
     end
   end
 end

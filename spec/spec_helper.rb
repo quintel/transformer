@@ -1,6 +1,6 @@
-Bundler.require(:test)
-
 require_relative '../lib/transformer'
+
+Bundler.require(:test)
 
 Transformer.root = Pathname.new("#{ Transformer.root }/spec/fixtures")
 Atlas.data_dir   = "#{ Transformer.root }/etsource"
