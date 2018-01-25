@@ -36,9 +36,7 @@ module Transformer
     def self.casts
       [
         Caster::Exporter,
-        Caster::AreaAttributes,
-        Caster::Industry,
-        Caster::Agriculture
+        Caster::AreaAttributes
       ].freeze
     end
   end
