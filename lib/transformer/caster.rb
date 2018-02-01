@@ -4,10 +4,9 @@ module Transformer
     # inputs and a set of values needed to create a dataset.
     #
     # Arguments:
-    # - dataset       = Atlas::Dataset
     # - dataset_cast = Hash[<key> => Float]
     #
-    def self.cast(dataset, dataset_cast_attributes)
+    def self.cast(dataset_cast_attributes)
       dataset_cast = DatasetCast.new(filter(dataset_cast_attributes))
 
       unless dataset_cast.valid?
