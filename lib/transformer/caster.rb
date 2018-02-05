@@ -22,14 +22,11 @@ module Transformer
     private
 
     def self.filter(dataset_cast_attributes)
-      dataset_cast_attributes.each_with_object({}) do |(key, val), obj|
-        if GraphMethods.all.key?(key.to_sym)
-          obj[:graph_methods] ||= {}
-          obj[:graph_methods][key] = val
-        else
-          obj[key] = val
-        end
-      end
+      attrs = dataset_cast_attributes
+        .symbolize_keys
+        .reject { |_, val| val.blank? }
+
+      attrs.merge(graph_methods: attrs.slice(*GraphMethods.all.keys))
     end
 
     def self.casts
