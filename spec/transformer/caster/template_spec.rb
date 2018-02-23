@@ -5,7 +5,7 @@ module Transformer
     it 'creates a template' do
       template = Caster::Template.new
 
-      expect(template.to_h).to eq({
+      expect(template.dump).to eq({
         area: {},
         graph_values: {}
       })
@@ -17,7 +17,7 @@ module Transformer
 
         template.add_area(:number_of_households, 5)
 
-        expect(template.to_h).to eq({
+        expect(template.dump).to eq({
           area: { number_of_households: 5 },
           graph_values: {}
         })
@@ -36,7 +36,7 @@ module Transformer
           5
         )
 
-        expect(template.to_h).to eq({
+        expect(template.dump).to eq({
           area: { },
           graph_values: {
             households_final_demand_for_electricity: {

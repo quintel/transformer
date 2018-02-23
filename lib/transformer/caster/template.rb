@@ -22,7 +22,7 @@ module Transformer
         @template.fetch(key)
       end
 
-      def to_h
+      def dump
         @template
       end
     end

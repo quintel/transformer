@@ -13,10 +13,9 @@ module Transformer
         raise ArgumentError, dataset_cast.errors.full_messages.join(', ')
       end
 
-      Caster::ToAtlasAttribute
-        .filter(dataset_cast, casts.reduce(Template.new) do |object, analyzer|
-          analyzer.analyze(dataset_cast, object)
-        end)
+      casts.reduce(Template.new) { |object, analyzer|
+        analyzer.analyze(dataset_cast, object)
+      }.dump
     end
 
     private
