@@ -17,15 +17,15 @@ describe Transformer::Caster do
   describe "correct working" do
     let(:inputs) {
       {
-        "gas_consumption" => 5.0,
-        "electricity_consumption" => 5.0,
-        "roof_surface_available_for_pv" => 5.0,
-        "number_of_cars" => 5.0,
-        "number_of_residences" => 5.0,
-        "number_of_residences_with_solar_pv" => 5.0,
-        "number_of_inhabitants" => 5.0,
-        "percentage_of_old_residences" => 10,
-        "building_area" => 24
+        'gas_consumption' => 5.0,
+        'electricity_consumption' => 5.0,
+        'roof_surface_available_for_pv' => 5.0,
+        'number_of_cars' => 5.0,
+        'number_of_residences' => 5.0,
+        'number_of_residences_with_solar_pv' => 5.0,
+        'number_of_inhabitants' => 5.0,
+        'percentage_of_old_residences' => 10,
+        'building_area' => 24
       }
     }
 
@@ -33,11 +33,11 @@ describe Transformer::Caster do
       analyzer = Transformer::Caster.cast(inputs)
 
       inputs.slice(
-        :number_of_residences,
-        :number_of_cars,
-        :number_of_inhabitants
+        'number_of_residences',
+        'number_of_cars',
+        'number_of_inhabitants'
       ).each do |key, val|
-        expect(analyzer[:area][key]).to eq(val)
+        expect(analyzer[:area][key.to_sym]).to eq(val)
       end
     end
 
