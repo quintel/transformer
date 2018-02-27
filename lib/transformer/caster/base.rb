@@ -24,6 +24,13 @@ module Transformer
         @template     = template
       end
 
+      def runtime
+        @runtime ||= Runtime.new(
+          Atlas::Dataset::Derived.find(@dataset_cast.area),
+          @dataset_cast
+        )
+      end
+
       def analyze
         raise NotImplentedError, "base class '#{ self.class }' misses analyze method"
       end
