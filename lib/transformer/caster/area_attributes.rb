@@ -13,15 +13,17 @@ module Transformer
 
       def set_cast_attributes!
         @dataset_cast.attributes
-          .slice(*Atlas::Dataset.attribute_set.map(&:name))
-          .each_pair do |key, val|
-            @template.add_area(key, val)
-          end
+                     .slice(*Atlas::Dataset.attribute_set.map(&:name))
+                     .each_pair do |key, val|
+                       @template.add_area(key, val)
+                     end
       end
 
       def number_of_old_residences
-        @number_of_old_residences ||=
-          (@dataset_cast.number_of_residences * (@dataset_cast.percentage_of_old_residences.to_f / 100))
+        @number_of_old_residences ||= begin
+          (@dataset_cast.number_of_residences *
+          (@dataset_cast.inputs.percentage_of_old_residences.to_f / 100))
+        end
       end
 
       def number_of_new_residences

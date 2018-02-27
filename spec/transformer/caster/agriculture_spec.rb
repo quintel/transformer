@@ -11,7 +11,7 @@ describe Transformer::Caster::Agriculture do
   describe "toggling off" do
     let(:dataset_cast) { Transformer::DatasetCast.new(
       has_agriculture: false,
-      graph_methods: {
+      inputs: {
         agriculture_useful_demand_electricity_demand: 5.0
       }
     ) }
@@ -19,7 +19,7 @@ describe Transformer::Caster::Agriculture do
     it 'all industry related initializer inputs' do
       expect(analyzer.analyze
         .get(:graph_values)
-        .fetch(:agriculture_useful_demand_electricity)
+        .fetch('agriculture_useful_demand_electricity')
         .fetch('demand')
       ).to eq(0)
     end
@@ -28,7 +28,7 @@ describe Transformer::Caster::Agriculture do
   describe "toggling on" do
     let(:dataset_cast) { Transformer::DatasetCast.new(
       has_agriculture: true,
-      graph_methods: {
+      inputs: {
         agriculture_useful_demand_electricity_demand: 5.0
       }
     ) }
@@ -36,7 +36,7 @@ describe Transformer::Caster::Agriculture do
     it 'all industry related initializer inputs' do
       expect(analyzer.analyze
         .get(:graph_values)
-        .fetch(:agriculture_useful_demand_electricity)
+        .fetch('agriculture_useful_demand_electricity')
         .fetch('demand')
       ).to eq(5.0)
     end
