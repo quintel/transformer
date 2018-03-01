@@ -2,9 +2,10 @@ module Transformer
   Filter = -> (attributes) do
     attributes.reject! { |_, val| val.blank? }
 
-    attributes
+    graph_methods = attributes
       .symbolize_keys!
-      .slice!(*GraphMethods.all.keys)
-      .merge(graph_methods: attributes)
+      .slice!(*Atlas::Dataset::Derived.attribute_set.map(&:name))
+
+    attributes.merge(graph_methods: graph_methods)
   end
 end

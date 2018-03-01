@@ -2,10 +2,19 @@ module Transformer
   module Caster
     class Exporter < Base
       def analyze
-        @dataset_cast.graph_methods.each_pair do |key, value|
-          next unless value
+        GraphMethods.all.each do |key, attribute|
+          value = @dataset_cast.graph_methods[key]
+          query = Atlas::Gquery.all.detect { |gq| gq.key == key }
 
-          @template.add_graph_value(GraphMethods.all[key], value)
+          next unless value || query
+
+          @template.add_graph_value(attribute, (
+            if value
+              value
+            elsif query
+              runtime.execute(query.query)
+            end
+          ))
         end
 
         @template

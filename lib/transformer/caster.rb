@@ -8,9 +8,7 @@ module Transformer
     # Arguments:
     # - dataset_cast = Hash[<key> => Float]
     #
-    def cast(dataset_cast_attributes)
-      dataset_cast = DatasetCast.new(Filter.call(dataset_cast_attributes))
-
+    def cast(dataset_cast)
       unless dataset_cast.valid?
         raise ArgumentError, dataset_cast.errors.full_messages.join(', ')
       end
