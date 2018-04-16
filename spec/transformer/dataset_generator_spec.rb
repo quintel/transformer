@@ -35,8 +35,11 @@ module Transformer
       dataset = Atlas::Dataset::Derived.find(:test)
 
       expect(dataset.graph_values.values).to eq(
+        'households_final_demand_electricity' => {
+          'demand' => 42
+        },
         'households_final_demand_for_hot_water_electricity' => {
-          'demand' => 5
+          'demand' => 215
         }
       )
     end

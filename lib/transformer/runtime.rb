@@ -11,5 +11,9 @@ module Transformer
     def DATASET_INPUT(key)
       @cast.inputs[key] || 0
     end
+
+    def SPARSE_GRAPH_QUERY(part, method)
+      execute(::Atlas::SparseGraphQuery.find(:"#{part}+#{method}").query)
+    end
   end
 end
