@@ -8,16 +8,14 @@ module Transformer
     # Arguments:
     # - dataset_cast = Hash[<key> => Float]
     #
-    def cast(dataset_cast_attributes)
-      dataset_cast = DatasetCast.new(Filter.call(dataset_cast_attributes))
-
+    def cast(dataset_cast)
       unless dataset_cast.valid?
         raise ArgumentError, dataset_cast.errors.full_messages.join(', ')
       end
 
-      casts.reduce(Template.new) { |object, analyzer|
+      casts.reduce(Template.new) do |object, analyzer|
         analyzer.analyze(dataset_cast, object)
-      }.dump
+      end.dump
     end
 
     def casts

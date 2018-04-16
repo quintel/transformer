@@ -1,0 +1,1 @@
+- query = (3 + 2) * SPARSE_GRAPH_QUERY(households_final_demand_electricity, demand) + DATASET_INPUT(etlocal_households_test)

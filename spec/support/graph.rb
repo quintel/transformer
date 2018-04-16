@@ -1,7 +1,7 @@
 class Graph
   def initialize(config)
     @graph = YAML.load_file(
-      Pathname.new(Transformer.root).join('graphs', "#{ config }.yml")
+      Pathname.new(Transformer.root).join('graphs', "#{config}.yml")
     )
   end
 

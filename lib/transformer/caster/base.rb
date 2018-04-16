@@ -17,15 +17,23 @@ module Transformer
         end
 
         unless template.is_a?(Template)
-          raise ArgumentError, 'template must be a Transformer::Caster::Template'
+          raise ArgumentError, 'template must be a Caster::Template'
         end
 
         @dataset_cast = dataset_cast
         @template     = template
       end
 
+      def runtime
+        @runtime ||= Runtime.new(
+          Atlas::Dataset::Derived.find(@dataset_cast.area),
+          @dataset_cast
+        )
+      end
+
       def analyze
-        raise NotImplentedError, "base class '#{ self.class }' misses analyze method"
+        raise NotImplentedError,
+              "base class '#{self.class}' misses analyze method"
       end
     end
   end

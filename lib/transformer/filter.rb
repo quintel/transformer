@@ -1,10 +1,11 @@
 module Transformer
-  Filter = -> (attributes) do
+  Filter = lambda do |attributes|
     attributes.reject! { |_, val| val.blank? }
 
-    attributes
-      .symbolize_keys!
-      .slice!(*GraphMethods.all.keys)
-      .merge(graph_methods: attributes)
+    inputs = attributes
+             .symbolize_keys!
+             .slice!(*Atlas::Dataset::Derived.attribute_set.map(&:name))
+
+    attributes.merge(inputs: inputs)
   end
 end

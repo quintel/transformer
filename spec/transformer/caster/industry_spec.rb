@@ -12,7 +12,7 @@ describe Transformer::Caster::Industry do
   describe "toggling off" do
     let(:dataset_cast) { Transformer::DatasetCast.new(
       has_industry: false,
-      graph_methods: {
+      inputs: {
         industry_useful_demand_for_chemical_aggregated_industry_demand: 5.0
       }
     ) }
@@ -20,7 +20,7 @@ describe Transformer::Caster::Industry do
     it 'all industry related initializer inputs' do
       expect(analyzer.analyze
         .get(:graph_values)
-        .fetch(:industry_useful_demand_for_chemical_aggregated_industry)
+        .fetch('industry_useful_demand_for_chemical_aggregated_industry')
         .fetch('demand')
       ).to eq(0)
     end
@@ -29,7 +29,7 @@ describe Transformer::Caster::Industry do
   describe "toggling on" do
     let(:dataset_cast) { Transformer::DatasetCast.new(
       has_industry: true,
-      graph_methods: {
+      inputs: {
         industry_useful_demand_for_chemical_aggregated_industry_demand: 5.0
       }
     ) }
@@ -37,7 +37,7 @@ describe Transformer::Caster::Industry do
     it 'all industry related initializer inputs' do
       expect(analyzer.analyze
         .get(:graph_values)
-        .fetch(:industry_useful_demand_for_chemical_aggregated_industry)
+        .fetch('industry_useful_demand_for_chemical_aggregated_industry')
         .fetch('demand')
       ).to eq(5.0)
     end

@@ -31,7 +31,7 @@ module Transformer
             Float,
             'households',
             :households_final_demand_for_electricity,
-            :demand
+            'demand'
           ),
           5
         )
@@ -39,8 +39,8 @@ module Transformer
         expect(template.dump).to eq({
           area: { },
           graph_values: {
-            households_final_demand_for_electricity: {
-              demand: 5.0
+            'households_final_demand_for_electricity' => {
+              'demand' => 5.0
             }
           }
         })

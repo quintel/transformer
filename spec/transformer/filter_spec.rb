@@ -2,25 +2,25 @@ require 'spec_helper'
 
 module Transformer
   describe Filter do
-    it "filter's values" do
+    it 'filters values' do
       filter = Filter.call(number_of_residences: 500)
 
-      expect(filter).to eq(number_of_residences: 500, graph_methods: {})
+      expect(filter).to eq(number_of_residences: 500, inputs: {})
     end
 
-    it "rejects empty values" do
+    it 'rejects empty values' do
       filter = Filter.call(number_of_residences: 500, test: nil)
 
-      expect(filter).to eq(number_of_residences: 500, graph_methods: {})
+      expect(filter).to eq(number_of_residences: 500, inputs: {})
     end
 
-    it "symbolizes keys" do
+    it 'symbolizes keys' do
       filter = Filter.call('number_of_residences' => 500, 'test' => nil)
 
-      expect(filter).to eq(number_of_residences: 500, graph_methods: {})
+      expect(filter).to eq(number_of_residences: 500, inputs: {})
     end
 
-    it "filter's values including graph methods" do
+    it 'filters values including graph methods' do
       filter = Filter.call(
         number_of_residences: 500,
         households_final_demand_electricity_demand: 100
@@ -28,7 +28,7 @@ module Transformer
 
       expect(filter).to eq(
         number_of_residences: 500,
-        graph_methods: {
+        inputs: {
           households_final_demand_electricity_demand: 100
         }
       )
