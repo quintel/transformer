@@ -52,7 +52,7 @@ module Transformer
             'demand' => 42
           },
           'households_final_demand_for_hot_water_electricity' => {
-            'demand' => 215
+            'demand' => 210
           }
         )
       end
