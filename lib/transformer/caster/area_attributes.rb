@@ -2,33 +2,29 @@ module Transformer
   module Caster
     class AreaAttributes < Base
       def analyze
-        set_cast_attributes!
+        Atlas::Dataset.attribute_set
+          .map(&:name)
+          .each(&method(:add_one_to_one))
+          .each(&method(:add_by_query))
 
-        @template.add_area(:number_of_old_residences, number_of_old_residences)
-        @template.add_area(:number_of_new_residences, number_of_new_residences)
         @template
       end
 
       private
 
-      def set_cast_attributes!
-        @dataset_cast.attributes
-                     .slice(*Atlas::Dataset.attribute_set.map(&:name))
-                     .each_pair do |key, val|
-                       @template.add_area(key, val)
-                     end
+      def add_one_to_one(key)
+        value = @dataset_cast.attributes[key]
+
+        @template.add_area(key, value) if value
       end
 
-      def number_of_old_residences
-        @number_of_old_residences ||= begin
-          (@dataset_cast.number_of_residences *
-          (@dataset_cast.inputs.percentage_of_old_residences.to_f / 100))
+      def add_by_query(key)
+        begin
+          query = Atlas::SparseGraphQuery.find(:"#{key}+area")
+
+          @template.add_area(key, runtime.execute(query.query))
+        rescue Atlas::DocumentNotFoundError
         end
-      end
-
-      def number_of_new_residences
-        @number_of_new_residences ||=
-          (@dataset_cast.number_of_residences - number_of_old_residences)
       end
     end
   end
