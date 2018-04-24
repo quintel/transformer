@@ -60,7 +60,7 @@ describe Transformer::Caster do
       let(:inputs) { {
         'area' => 'ameland',
         'number_of_residences' => 5.0,
-        'households_final_demand_electricity_households_final_demand_for_hot_water_electricity_parent_share' => 0.2
+        'households_final_demand_electricity_households_final_demand_for_hot_water_electricity+parent_share' => 0.2
       } }
 
       it 'flows through to the end' do

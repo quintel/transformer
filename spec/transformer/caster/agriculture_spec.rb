@@ -12,7 +12,7 @@ describe Transformer::Caster::Agriculture do
     let(:dataset_cast) { Transformer::DatasetCast.new(
       has_agriculture: false,
       inputs: {
-        agriculture_useful_demand_electricity_demand: 5.0
+        :'agriculture_useful_demand_electricity+demand' => 5.0
       }
     ) }
 
@@ -29,7 +29,7 @@ describe Transformer::Caster::Agriculture do
     let(:dataset_cast) { Transformer::DatasetCast.new(
       has_agriculture: true,
       inputs: {
-        agriculture_useful_demand_electricity_demand: 5.0
+        :'agriculture_useful_demand_electricity+demand' => 5.0
       }
     ) }
 
