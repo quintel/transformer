@@ -13,7 +13,7 @@ describe Transformer::Caster::Industry do
     let(:dataset_cast) { Transformer::DatasetCast.new(
       has_industry: false,
       inputs: {
-        :'industry_useful_demand_for_chemical_aggregated_industry+demand' => 5.0
+        :'industry_useful_demand_for_chemical_aggregated_industry_demand' => 5.0
       }
     ) }
 
@@ -30,7 +30,7 @@ describe Transformer::Caster::Industry do
     let(:dataset_cast) { Transformer::DatasetCast.new(
       has_industry: true,
       inputs: {
-        :'industry_useful_demand_for_chemical_aggregated_industry+demand' => 5.0
+        :'industry_useful_demand_for_chemical_aggregated_industry_demand' => 5.0
       }
     ) }
 

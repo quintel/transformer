@@ -13,7 +13,7 @@ module Transformer
     def node_attributes
       Atlas::Node.all.each_with_object({}) do |node, result|
         node.graph_methods.each do |method|
-          result[:"#{ node.key }+#{ method }"] = GraphAttribute.new(
+          result[:"#{ node.key }_#{ method }"] = GraphAttribute.new(
             Float, node.sector, node.key, method, find_query(node.key, method)
           )
         end
@@ -23,7 +23,7 @@ module Transformer
     def edge_attributes
       Atlas::Edge.all.each_with_object({}) do |edge, result|
         edge.graph_methods.each do |method|
-          result[:"#{ edge.supplier }_#{ edge.consumer }+#{ method }"] =
+          result[:"#{ edge.supplier }_#{ edge.consumer }_#{ method }"] =
             GraphAttribute.new(
               Float, nil, edge.key, method, find_query(edge.key, method)
             )
