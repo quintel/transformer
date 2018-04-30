@@ -20,7 +20,7 @@ module Transformer
 
       def add_by_query(key)
         begin
-          query = Atlas::SparseGraphQuery.find(:"#{key}+area")
+          query = Atlas::SparseGraphQuery.find(:"area+#{key}")
 
           @template.add_area(key, runtime.execute(query.query))
         rescue Atlas::DocumentNotFoundError

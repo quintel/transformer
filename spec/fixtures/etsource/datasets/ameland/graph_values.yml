@@ -1,5 +1,5 @@
 ---
-households_final_demand_electricity:
-  demand: 42
 households_final_demand_for_hot_water_electricity:
   demand: 210
+households_final_demand_electricity:
+  demand: 42
