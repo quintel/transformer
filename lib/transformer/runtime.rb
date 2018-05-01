@@ -27,5 +27,9 @@ module Transformer
     def EDGE_VALUE(edge_key, attribute)
       Atlas::Edge.find(edge_key).public_send(attribute)
     end
+
+    def IF(condition, true_statement, false_statement)
+      condition ? true_statement : false_statement
+    end
   end
 end
