@@ -1,7 +1,7 @@
 module Transformer
   module GraphMethods
     GraphAttribute = Struct.new(
-      :type, :export_key, :export_method, :sparse_graph_query, :converter
+      :type, :export_key, :export_method, :sparse_graph_query
     )
 
     module_function
@@ -31,8 +31,7 @@ module Transformer
       GraphAttribute.new(Float,
                          obj.key,
                          method,
-                         find_query(obj.key, method),
-                         converter_for(method))
+                         find_query(obj.key, method))
     end
 
     def find_query(key, method)
@@ -40,15 +39,6 @@ module Transformer
         Atlas::SparseGraphQuery.find(:"#{key}+#{method}")
       rescue Atlas::DocumentNotFoundError
         nil
-      end
-    end
-
-    def converter_for(method)
-      case method
-      when 'parent_share', 'child_share', 'share'
-        -> (val) { val / 100.0 }
-      else
-        -> (val) { val }
       end
     end
   end

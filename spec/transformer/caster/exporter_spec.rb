@@ -6,7 +6,7 @@ module Transformer
       DatasetCast.new(
         area: 'ameland',
         inputs: {
-          households_final_demand_electricity_households_final_demand_for_hot_water_electricity_parent_share: 25.0
+          households_final_demand_electricity_households_final_demand_for_hot_water_electricity_parent_share: 0.25
         }
       )
     }

@@ -20,10 +20,7 @@ module Transformer
         val = @dataset_cast.inputs[key]
 
         if val
-          @template.add_graph_value(
-            attribute,
-            attribute.converter.call(val)
-          )
+          @template.add_graph_value(attribute, val)
         end
       end
 
@@ -34,10 +31,7 @@ module Transformer
         query = attribute.sparse_graph_query
 
         if query
-          @template.add_graph_value(
-            attribute,
-            attribute.converter.call(runtime.execute(query.query))
-          )
+          @template.add_graph_value(attribute, runtime.execute(query.query))
         end
       end
     end
