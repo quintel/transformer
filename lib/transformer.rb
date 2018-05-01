@@ -19,8 +19,5 @@ require_relative 'transformer/caster'
 require_relative 'transformer/caster/base'
 
 require_relative 'transformer/caster/template'
-require_relative 'transformer/caster/sector_switcher'
 require_relative 'transformer/caster/area_attributes'
 require_relative 'transformer/caster/exporter'
-require_relative 'transformer/caster/agriculture'
-require_relative 'transformer/caster/industry'
