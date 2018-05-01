@@ -29,7 +29,6 @@ module Transformer
         template.add_graph_value(
           GraphMethods::GraphAttribute.new(
             Float,
-            'households',
             :households_final_demand_for_electricity,
             'demand'
           ),

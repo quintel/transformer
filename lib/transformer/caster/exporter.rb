@@ -21,8 +21,8 @@ module Transformer
 
         if val
           @template.add_graph_value(
-            GraphMethods.all.fetch(key),
-            val
+            attribute,
+            attribute.converter.call(val)
           )
         end
       end
@@ -36,7 +36,7 @@ module Transformer
         if query
           @template.add_graph_value(
             attribute,
-            runtime.execute(query.query)
+            attribute.converter.call(runtime.execute(query.query))
           )
         end
       end
