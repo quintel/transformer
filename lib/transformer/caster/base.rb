@@ -26,7 +26,7 @@ module Transformer
 
       def runtime
         @runtime ||= Runtime.new(
-          Atlas::Dataset::Derived.find(@dataset_cast.area),
+          Atlas::Dataset::Derived.find(@dataset_cast.area).parent,
           @dataset_cast
         )
       end
