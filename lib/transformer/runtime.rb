@@ -9,7 +9,7 @@ module Transformer
     private
 
     def DATASET_INPUT(key)
-      @cast.inputs[key] || Math::PI
+      @cast.inputs.to_h.fetch(key)
     end
 
     def SPARSE_GRAPH_QUERY(part, method)
