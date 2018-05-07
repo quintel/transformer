@@ -31,5 +31,9 @@ module Transformer
     def IF(condition, true_statement, false_statement)
       condition ? true_statement : false_statement
     end
+
+    def MAX(value, other_value)
+      value > other_value ? value : other_value
+    end
   end
 end
