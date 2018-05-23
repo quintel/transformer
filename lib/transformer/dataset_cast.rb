@@ -5,6 +5,7 @@ module Transformer
 
     attribute :base_dataset, Symbol
     attribute :area, String
+    attribute :group, String
     attribute :has_industry, Boolean, default: false
     attribute :has_agriculture, Boolean, default: false
     attribute :percentage_of_old_residences, Float, default: 0.0
