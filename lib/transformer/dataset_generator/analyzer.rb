@@ -5,7 +5,7 @@ module Transformer
 
       dataset = Atlas::Dataset::Derived.find(cast.area)
 
-      dataset.update_attributes(values.fetch(:area))
+      dataset.update_attributes!(values.fetch(:area))
 
       dataset.graph_values.values = values.fetch(:graph_values)
       dataset.graph_values.save
