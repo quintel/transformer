@@ -12,6 +12,10 @@ module Transformer
       @cast.inputs.to_h.fetch(key)
     end
 
+    def AREA(key)
+      @cast.attributes[key] || super
+    end
+
     def SPARSE_GRAPH_QUERY(part, method)
       execute(::Atlas::SparseGraphQuery.find(:"#{part}+#{method}").query)
     end
