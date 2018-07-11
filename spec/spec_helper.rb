@@ -3,7 +3,7 @@ require_relative '../lib/transformer'
 Bundler.require(:test)
 
 Transformer.root = Pathname.new("#{ Transformer.root }/spec/fixtures")
-Atlas.data_dir   = "#{ Transformer.root }/etsource"
+require_relative 'support/fixtures'
 
 RSpec.configure do |config|
   # Use only the new "expect" syntax.
@@ -20,4 +20,7 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  # Use a (safe) copy of spec/fixtures as the data-source.
+  config.include Transformer::Spec::Fixtures
 end

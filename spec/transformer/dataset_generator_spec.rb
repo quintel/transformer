@@ -15,7 +15,7 @@ module Transformer
     end
 
     describe 'new datasets' do
-      before(:all) do
+      before(:each) do
         DatasetGenerator.new(
           area: 'test',
           base_dataset: 'nl',
@@ -55,10 +55,6 @@ module Transformer
             'demand' => 210
           }
         )
-      end
-
-      after(:all) do
-        DatasetGenerator::Destroyer.call(DatasetCast.new(area: 'test'))
       end
     end
   end
