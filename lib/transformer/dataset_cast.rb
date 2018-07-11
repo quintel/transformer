@@ -13,7 +13,7 @@ module Transformer
 
     def self.with_atlas_attributes
       Atlas::Dataset.attribute_set.map do |attr|
-        yield(attr) if attr.options[:proportional]
+        yield(attr) if attr.type.primitive == Float
       end
     end
 
