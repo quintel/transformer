@@ -7,10 +7,11 @@ module Transformer
         DatasetGenerator.new(
           area: 'ameland',
           base_dataset: 'nl',
-          number_of_residences: 1
+          number_of_residences: 2,
+          number_of_new_residences: 1.5
         ).generate
 
-        expect(Atlas::Dataset::Derived.find(:ameland).number_of_residences).to eq(1)
+        expect(Atlas::Dataset::Derived.find(:ameland).number_of_residences).to eq(2)
       end
     end
 
@@ -20,6 +21,7 @@ module Transformer
           area: 'test',
           base_dataset: 'nl',
           number_of_residences: 25,
+          number_of_new_residences: 24.5,
           number_of_cars: 100,
           # In this test setup this attribute will be multiplied by 5 in order
           # to end up with a demand for households_final_demand_electricity
