@@ -13,12 +13,12 @@ module Transformer
 
     def self.with_atlas_attributes
       Atlas::Dataset.attribute_set.map do |attr|
-        yield(attr) if attr.type.primitive == Float
+        yield(attr, attr.type) if attr.type.primitive <= Numeric
       end
     end
 
-    with_atlas_attributes do |attr|
-      attribute attr.name, Float
+    with_atlas_attributes do |attr, type|
+      attribute attr.name, type
     end
 
     # Validation
