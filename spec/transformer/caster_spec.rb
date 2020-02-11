@@ -36,7 +36,7 @@ describe Transformer::Caster do
         'number_of_residences'               => 5.0,
         'number_of_residences_with_solar_pv' => 5.0,
         'number_of_inhabitants'              => 5.0,
-        'percentage_of_old_residences'       => 10,
+        'percentage_of_apartments'     => 10,
         'building_area'                      => 24
       }
     }
@@ -51,8 +51,8 @@ describe Transformer::Caster do
       end
     end
 
-    it 'determines the correct number_of_old_residences' do
-      expect(caster[:area][:number_of_old_residences]).to eq(0.5)
+    it 'determines the correct number_of_apartments' do
+      expect(caster[:area][:number_of_apartments]).to eq(0.5)
     end
 
     # Exporter spec #2

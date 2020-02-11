@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/quintel/atlas.git
-  revision: c3856240412a900cd604878d2b4cdf1b3f8ac62b
-  ref: c385624
+  revision: ed326c791547cca92b6fed87856d974644f45858
+  ref: ed326c7
   specs:
     atlas (1.0.0)
       activemodel (>= 4.1.14.1)
@@ -36,9 +36,9 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (5.2.0)
-      activesupport (= 5.2.0)
-    activesupport (5.2.0)
+    activemodel (5.2.4.1)
+      activesupport (= 5.2.4.1)
+    activesupport (5.2.4.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
@@ -47,21 +47,22 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
+    byebug (11.0.1)
     coderay (1.1.1)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
-    concurrent-ruby (1.0.5)
+    concurrent-ruby (1.1.5)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.3)
     docile (1.1.5)
     equalizer (0.0.11)
-    i18n (1.0.1)
+    i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     json (2.1.0)
     method_source (0.8.2)
-    minitest (5.11.3)
+    minitest (5.14.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -90,7 +91,7 @@ GEM
       unicode-display_width (~> 1.1, >= 1.1.1)
     thread_safe (0.3.6)
     turbine-graph (0.1.3)
-    tzinfo (1.2.5)
+    tzinfo (1.2.6)
       thread_safe (~> 0.1)
     unicode-display_width (1.3.0)
     virtus (1.0.5)
@@ -104,6 +105,7 @@ PLATFORMS
 
 DEPENDENCIES
   atlas!
+  byebug
   pry (~> 0.9)
   refinery!
   rspec
@@ -112,4 +114,4 @@ DEPENDENCIES
   transformer!
 
 BUNDLED WITH
-   1.16.0
+   1.17.3
