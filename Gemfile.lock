@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/quintel/atlas.git
-  revision: 79f76c43c583a63ca104eac9fdec065b4c3357a9
-  ref: 79f76c4
+  revision: 6e18429de4508e81d972f02a1e58065e71dab7fa
+  ref: 6e18429
   specs:
     atlas (1.0.0)
       activemodel (>= 4.1.14.1)
@@ -11,8 +11,8 @@ GIT
 
 GIT
   remote: git://github.com/quintel/refinery.git
-  revision: 636686c0d6cb5a76f47d5fc67c75b6f307e6f636
-  ref: 636686c
+  revision: 72eacf84c980ef797a0b7e63f55a39f5ca98640b
+  ref: 72eacf8
   specs:
     refinery (0.0.1)
       ruby-graphviz
@@ -81,7 +81,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
-    ruby-graphviz (1.2.3)
+    ruby-graphviz (1.2.4)
     simplecov (0.14.1)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -94,7 +94,7 @@ GEM
     turbine-graph (0.1.3)
     tzinfo (1.2.6)
       thread_safe (~> 0.1)
-    unicode-display_width (1.3.0)
+    unicode-display_width (1.6.1)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
