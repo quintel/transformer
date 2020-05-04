@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/quintel/atlas.git
-  revision: 6e18429de4508e81d972f02a1e58065e71dab7fa
-  ref: 6e18429
+  revision: 0112f54b1ebe0e390a3f66e5dc32428233105c68
+  ref: 0112f54
   specs:
     atlas (1.0.0)
       activemodel (>= 4.1.14.1)
@@ -36,9 +36,9 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (6.0.2.1)
-      activesupport (= 6.0.2.1)
-    activesupport (6.0.2.1)
+    activemodel (6.0.2.2)
+      activesupport (= 6.0.2.2)
+    activesupport (6.0.2.2)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
@@ -92,7 +92,7 @@ GEM
       unicode-display_width (~> 1.1, >= 1.1.1)
     thread_safe (0.3.6)
     turbine-graph (0.1.3)
-    tzinfo (1.2.6)
+    tzinfo (1.2.7)
       thread_safe (~> 0.1)
     unicode-display_width (1.6.1)
     virtus (1.0.5)
@@ -100,7 +100,7 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
-    zeitwerk (2.2.2)
+    zeitwerk (2.3.0)
 
 PLATFORMS
   ruby
