@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/quintel/atlas.git
-  revision: 0112f54b1ebe0e390a3f66e5dc32428233105c68
-  ref: 0112f54
+  revision: 9f393260b41b54a58e873e8d52584ed5074823b8
+  ref: 9f39326
   specs:
     atlas (1.0.0)
       activemodel (>= 4.1.14.1)
@@ -36,9 +36,9 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (6.0.3.1)
-      activesupport (= 6.0.3.1)
-    activesupport (6.0.3.1)
+    activemodel (6.0.3.3)
+      activesupport (= 6.0.3.3)
+    activesupport (6.0.3.3)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
@@ -52,18 +52,18 @@ GEM
     coderay (1.1.1)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
-    concurrent-ruby (1.1.6)
+    concurrent-ruby (1.1.7)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.3)
     docile (1.1.5)
     equalizer (0.0.11)
-    i18n (1.8.2)
+    i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     json (2.1.0)
     method_source (0.8.2)
-    minitest (5.14.1)
+    minitest (5.14.2)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -100,7 +100,7 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
-    zeitwerk (2.3.0)
+    zeitwerk (2.4.0)
 
 PLATFORMS
   ruby
