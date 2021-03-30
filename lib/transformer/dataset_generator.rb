@@ -14,6 +14,10 @@ module Transformer
       end
     end
 
+    def destroy
+      Destroyer.call(@cast)
+    end
+
     private
 
     def generators
