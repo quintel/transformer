@@ -11,7 +11,7 @@ module Transformer
     end
 
     def node_attributes
-      Atlas::Node.all.each_with_object({}) do |node, result|
+      Atlas::EnergyNode.all.each_with_object({}) do |node, result|
         node.graph_methods.each do |method|
           result[:"#{ node.key }_#{ method }"] = create_attribute(node, method)
         end
@@ -19,7 +19,7 @@ module Transformer
     end
 
     def edge_attributes
-      Atlas::Edge.all.each_with_object({}) do |edge, result|
+      Atlas::EnergyEdge.all.each_with_object({}) do |edge, result|
         edge.graph_methods.each do |method|
           result[:"#{ edge.supplier }_#{ edge.consumer }_#{ method }"] =
             create_attribute(edge, method)
