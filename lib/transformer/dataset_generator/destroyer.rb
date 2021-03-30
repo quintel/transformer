@@ -1,9 +1,7 @@
 module Transformer
   class DatasetGenerator
     Destroyer = lambda do |cast|
-      FileUtils.rm_rf(
-        Atlas::Dataset::Derived.find(cast.area).dataset_dir
-      )
+      Atlas::Dataset::Derived.find(cast.area).destroy! if Atlas::Dataset::Derived.exists?(cast.area)
     end
   end
 end
