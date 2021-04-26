@@ -1,8 +1,12 @@
+# frozen_string_literal: true
+
 require_relative '../lib/transformer'
 
 Bundler.require(:test)
 
-Transformer.root = Pathname.new("#{ Transformer.root }/spec/fixtures")
+Transformer.root = Transformer.root.join('spec/fixtures')
+Transformer.canonical_dataset_key = :nl
+
 require_relative 'support/fixtures'
 
 RSpec.configure do |config|
