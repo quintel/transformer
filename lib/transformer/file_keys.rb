@@ -25,7 +25,7 @@ module Transformer
 
         file.row_keys.each do |row_key|
           file.column_keys[1..].each do |column_key|
-            data["file_#{file_key}_#{row_key}_#{column_key}"] =
+            data[:"file_#{file_key}_#{row_key}_#{column_key}"] =
               EditableCell.new(file_key, row_key, column_key)
           end
         end
