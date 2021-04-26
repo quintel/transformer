@@ -21,15 +21,15 @@ module Transformer
     end
 
     def NODE_VALUE(node_key, attribute)
-      Atlas::EnergyNode.find(node_key).public_send(attribute)
+      ::Atlas::EnergyNode.find(node_key).public_send(attribute)
     end
 
     def NODE_EFFICIENCY(node_key, direction, carrier)
-      Atlas::EnergyNode.find(node_key).public_send(direction).fetch(carrier)
+      ::Atlas::EnergyNode.find(node_key).public_send(direction).fetch(carrier)
     end
 
     def EDGE_VALUE(edge_key, attribute)
-      Atlas::EnergyEdge.find(edge_key).public_send(attribute)
+      ::Atlas::EnergyEdge.find(edge_key).public_send(attribute)
     end
 
     def IF(condition, true_statement, false_statement)
