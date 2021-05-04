@@ -21,7 +21,8 @@ module Transformer
     def casts
       [
         Caster::Exporter,
-        Caster::AreaAttributes
+        Caster::AreaAttributes,
+        Caster::FileValues
       ].freeze
     end
   end

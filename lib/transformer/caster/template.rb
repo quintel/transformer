@@ -2,7 +2,7 @@ module Transformer
   module Caster
     class Template
       def initialize
-        @template = { area: {}, graph_values: {} }
+        @template = { area: {}, file_values: {}, graph_values: {} }
       end
 
       def add_graph_value(graph_method, value)
@@ -11,6 +11,11 @@ module Transformer
 
         @template.fetch(:graph_values)[key] ||= {}
         @template.fetch(:graph_values).fetch(key).store(export_method, value)
+      end
+
+      def add_file_value(cell, value)
+        @template[:file_values][cell.file] ||= {}
+        @template[:file_values][cell.file][cell] = value unless value.nil?
       end
 
       def add_area(key, value)

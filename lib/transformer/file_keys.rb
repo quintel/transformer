@@ -4,10 +4,10 @@ module Transformer
   # Maps keys in editable CSV files to their path, row, and column.
   module FileKeys
     # A list of CSV documents exposed by Atlas::Dataset
-    EDITABLE_FILES = %w[carrier_data].freeze
+    EDITABLE_FILES = %w[carriers].freeze
 
     # A map containing the key of the file, and the keys of the row and column which may be edited.
-    EditableCell = Struct.new(:file, :row, :column)
+    Cell = Struct.new(:file, :row, :column)
 
     module_function
 
@@ -26,7 +26,7 @@ module Transformer
         file.row_keys.each do |row_key|
           file.column_keys[1..].each do |column_key|
             data[:"file_#{file_key}_#{row_key}_#{column_key}"] =
-              EditableCell.new(file_key, row_key, column_key)
+              Cell.new(file_key, row_key, column_key)
           end
         end
       end

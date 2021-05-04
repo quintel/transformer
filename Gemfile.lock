@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/quintel/atlas.git
-  revision: c06c79828df2e20cd926b746bfbf358da60d303f
+  revision: 9ad1868c9ea6168d1a500c9da06bcb27f74eab5a
   branch: ds-simplify
   specs:
     atlas (1.0.0)
