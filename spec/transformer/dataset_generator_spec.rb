@@ -61,14 +61,17 @@ RSpec.describe Transformer::DatasetGenerator do
     let(:params) { {} }
     let(:parent) { Atlas::Dataset.find(:nl) }
 
-    let!(:dataset) do
+    let!(:generator) do
       described_class.new({
         area: 'ameland',
         base_dataset: parent.key,
         number_of_residences: 2,
         number_of_new_residences: 1.5
-      }.merge(params)).generate
+      }.merge(params))
+    end
 
+    let(:dataset) do
+      generator.generate
       Atlas::Dataset.find(:ameland)
     end
 
@@ -77,6 +80,49 @@ RSpec.describe Transformer::DatasetGenerator do
     end
 
     include_examples 'a dataset generator with file values'
+  end
+
+  describe 'preserving files in an existing dataset' do
+    let!(:generator) do
+      described_class.new(
+        area: 'ameland',
+        base_dataset: :nl,
+        number_of_residences: 2,
+        number_of_new_residences: 1.5
+      )
+    end
+
+    let(:dir) { dataset.dataset_dir.join('a/directory') }
+    let(:nested_file) { dataset.dataset_dir.join('a/deeply/nested/file.txt') }
+    let(:dataset) { Atlas::Dataset.find(:ameland) }
+
+    before do
+      dir.mkpath
+      dir.join('file.txt').write('hello')
+
+      nested_file.dirname.mkpath
+      nested_file.write('goodbye')
+
+      generator.preserve_paths(['a/directory', 'a/deeply/nested/file.txt', 'doesnt/exist']) do
+        generator.generate
+      end
+    end
+
+    it 'preserves directories' do
+      expect(dir).to be_directory
+    end
+
+    it 'preserves the contents of directories' do
+      expect(dir.join('file.txt').read).to eq('hello')
+    end
+
+    it 'preserves nested files' do
+      expect(nested_file.read).to eq('goodbye')
+    end
+
+    it 'does not create files which did not exist' do
+      expect(dataset.dataset_dir.join('doesnt/exist')).not_to be_exist
+    end
   end
 
   describe 'new datasets' do
@@ -123,5 +169,32 @@ RSpec.describe Transformer::DatasetGenerator do
     end
 
     include_examples 'a dataset generator with file values'
+  end
+
+  describe 'preserving non-existent files in a new dataset' do
+    let!(:generator) do
+      described_class.new(
+        area: 'test',
+        base_dataset: :nl,
+        number_of_residences: 2,
+        number_of_new_residences: 1.5
+      )
+    end
+
+    before do
+      generator.preserve_paths(['a/directory', 'a/deeply/nested/file.txt']) do
+        generator.generate
+      end
+    end
+
+    let(:dataset) { Atlas::Dataset.find(:test) }
+
+    it 'does not create directories' do
+      expect(dataset.dataset_dir.join('a/directory')).not_to be_exist
+    end
+
+    it 'does not create files' do
+      expect(dataset.dataset_dir.join('a/deeply/nested/file.txt')).not_to be_exist
+    end
   end
 end

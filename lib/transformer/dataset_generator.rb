@@ -14,6 +14,24 @@ module Transformer
       end
     end
 
+    # Public: Given an array of paths which are relative to the dataset being created or updated,
+    # ensures that these paths are not deleted, but are restored after the block is executed.
+    #
+    # For example:
+    #
+    #   generator.preserve_paths(%w[curves something/else]) do
+    #     generator.destroy
+    #     generator.generate
+    #   end
+    #
+    # Returns the value of the block.
+    def preserve_paths(paths, &block)
+      return yield unless Atlas::Dataset::Derived.exists?(@cast.area)
+
+      dir = Atlas::Dataset::Derived.find(@cast.area).dataset_dir
+      Destroyer.preserve(paths.map { |basename| dir.join(basename) }, &block)
+    end
+
     def destroy
       Destroyer.call(@cast)
     end
