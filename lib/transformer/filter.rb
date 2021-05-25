@@ -4,7 +4,7 @@ module Transformer
 
     inputs = attributes
              .symbolize_keys!
-             .slice!(*Atlas::Dataset::Derived.attribute_set.map(&:name) + [:time_curves_to_zero])
+             .slice!(*Atlas::Dataset::Derived.attribute_set.map(&:name))
 
     attributes.merge(inputs: inputs)
   end
