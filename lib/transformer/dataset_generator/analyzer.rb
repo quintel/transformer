@@ -42,7 +42,12 @@ module Transformer
           parent_file = parent.public_send(file_key)
 
           any_changes = value_map.any? do |cell, value|
-            value != parent_file.get(cell.row, cell.column)
+            # Only includes values which are significantly different from the default. This may not
+            # be future-proof, but at the time of writing we only edit carriers for which 4DP is
+            # sufficient.
+            #
+            # See https://github.com/quintel/etlocal/issues/315
+            value.round(4) != parent_file.get(cell.row, cell.column).round(4)
           end
 
           next unless any_changes
