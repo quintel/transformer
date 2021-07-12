@@ -25,7 +25,14 @@ module Transformer
     end
 
     def NODE_EFFICIENCY(node_key, direction, carrier)
-      ::Atlas::EnergyNode.find(node_key).public_send(direction).fetch(carrier)
+      node = ::Atlas::EnergyNode.find(node_key)
+      query = node.queries[:"#{direction}.#{carrier}"]
+
+      if query
+        execute(query)
+      else
+        node.public_send(direction).fetch(carrier)
+      end
     end
 
     def EDGE_VALUE(edge_key, attribute)
