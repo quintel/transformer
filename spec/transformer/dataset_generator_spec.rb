@@ -32,7 +32,7 @@ RSpec.shared_examples 'a dataset generator with file values' do
     let(:params) { { file_carriers_small_x: 100.0 } }
 
     # Ensure we get a fresh copy from disk.
-    let(:csv) { Atlas::CSVDocument.new(dataset.carriers.path) }
+    let(:csv) { Atlas::CSVDocument.read(dataset.carriers.path) }
 
     it 'does not symlink the parent file' do
       expect(dataset.carriers.path.realpath).not_to eq(parent.carriers.path.realpath)

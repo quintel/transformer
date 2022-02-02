@@ -4,7 +4,7 @@ gemspec
 
 gem 'rubel',    ref: 'ad3d44e', github: 'quintel/rubel'
 gem 'refinery', ref: '72eacf8', github: 'quintel/refinery'
-gem 'atlas',    ref: '58082e3', github: 'quintel/atlas'
+gem 'atlas',    ref: 'cfa8b8c', github: 'quintel/atlas'
 
 group :development do
   gem 'rubocop'

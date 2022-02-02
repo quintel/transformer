@@ -75,7 +75,7 @@ module Transformer
 
         FileUtils.cp(original_path, new_path)
 
-        file = Atlas::CSVDocument.new(new_path)
+        file = Atlas::CSVDocument.read(new_path)
 
         value_map.each do |cell, value|
           file.set(cell.row, cell.column, value)
