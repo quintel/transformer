@@ -40,7 +40,8 @@ module Transformer
     end
 
     def IF(condition, true_statement, false_statement)
-      condition ? true_statement : false_statement
+      statement = condition ? true_statement : false_statement
+      statement.respond_to?(:call) ? statement.call : statement
     end
 
     def MAX(value, other_value)
