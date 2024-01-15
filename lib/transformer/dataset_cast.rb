@@ -22,8 +22,8 @@ module Transformer
     end
 
     # Validation
-    validates_presence_of :number_of_residences
-    validates :number_of_residences, numericality: { greater_than: 0 }
+    validates_presence_of :number_of_inhabitants
+    validates :number_of_inhabitants, numericality: { greater_than: 0 }
 
     def atlas_attributes
       attributes.slice(*self.class.with_atlas_attributes(&:name))
