@@ -5,7 +5,7 @@ module Transformer
         Atlas::Scaler.new(
           cast.base_dataset,
           cast.area,
-          cast.number_of_residences
+          cast.number_of_inhabitants
         ).create_scaled_dataset
       end
 
