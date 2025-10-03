@@ -9,13 +9,14 @@ module Transformer
     context 'with an auto-created Float area attribute' do
       let(:attributes) do
         {
-          number_of_residences: 100,
+          present_number_of_residences: 100,
+          number_of_inhabitants: 10,
           inputs: { agriculture_useful_demand_electricity_demand: 5.0 }
         }
       end
 
       it 'sets the area attribute' do
-        expect(dataset_cast.number_of_residences).to eq(100)
+        expect(dataset_cast.present_number_of_residences).to eq(100)
       end
 
       it 'initializes a dataset cast' do
@@ -29,7 +30,7 @@ module Transformer
     end
 
     context 'with an auto-created Integer area attribute' do
-      let(:attributes) { { number_of_residences: 100, analysis_year: 2016 } }
+      let(:attributes) { { present_number_of_residences: 100, number_of_inhabitants: 10, analysis_year: 2016 } }
 
       it 'sets the Integer area attribute' do
         expect(dataset_cast.analysis_year).to eq(2016)

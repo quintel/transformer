@@ -68,7 +68,7 @@
 - land_available_for_solar = 2.4801953150484786
 - number_of_buildings = 52.67046639831028
 - number_of_cars = 1062.598515994393
-- number_of_residences = 10.0
+- present_number_of_residences = 10.0
 - number_of_inhabitants = 10.0
 - number_of_new_residences = 10.0
 - number_of_old_residences = 0.0
@@ -77,11 +77,11 @@
 - residences_roof_surface_available_for_pv = 0.005
 - buildings_roof_surface_available_for_pv = 0.0
 - base_dataset = nl
-- scaling.area_attribute = number_of_residences
+- scaling.area_attribute = present_number_of_residences
 - scaling.base_value = 7449298
-- scaling.has_agriculture = 
-- scaling.has_energy = 
-- scaling.has_industry = 
+- scaling.has_agriculture =
+- scaling.has_energy =
+- scaling.has_industry =
 - scaling.value = 1000
 - init.agriculture_useful_demand_electricity = 0.0
 - geo_id = ameland

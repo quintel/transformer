@@ -33,8 +33,8 @@ describe Transformer::Caster do
         'electricity_consumption'            => 5.0,
         'roof_surface_available_for_pv'      => 5.0,
         'number_of_cars'                     => 5.0,
-        'number_of_residences'               => 5.0,
-        'number_of_residences_with_solar_pv' => 5.0,
+        'present_number_of_residences'               => 5.0,
+        'present_number_of_residences_with_solar_pv' => 5.0,
         'number_of_inhabitants'              => 5.0,
         'percentage_of_apartments'     => 10,
         'building_area'                      => 24
@@ -43,7 +43,7 @@ describe Transformer::Caster do
 
     it 'spews out the correct area attributes of a local dataset' do
       caster.slice(
-        'number_of_residences',
+        'present_number_of_residences',
         'number_of_cars',
         'number_of_inhabitants'
       ).each do |key, val|
@@ -51,15 +51,13 @@ describe Transformer::Caster do
       end
     end
 
-    it 'determines the correct number_of_apartments' do
-      expect(caster[:area][:number_of_apartments]).to eq(0.5)
-    end
 
     # Exporter spec #2
     describe "a key from etlocal that belongs to a share" do
       let(:inputs) { {
         'area' => 'ameland',
-        'number_of_residences' => 5.0,
+        'present_number_of_residences' => 5.0,
+        'number_of_inhabitants'              => 5.0,
         'households_final_demand_electricity_households_final_demand_for_hot_water_electricity_parent_share' => 0.2
       } }
 

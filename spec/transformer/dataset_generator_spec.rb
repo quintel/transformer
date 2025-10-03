@@ -65,7 +65,8 @@ RSpec.describe Transformer::DatasetGenerator do
       described_class.new({
         area: 'ameland',
         base_dataset: parent.key,
-        number_of_residences: 2,
+        present_number_of_residences: 2,
+        number_of_inhabitants: 10,
         number_of_new_residences: 1.5
       }.merge(params))
     end
@@ -76,7 +77,7 @@ RSpec.describe Transformer::DatasetGenerator do
     end
 
     it 'updates an existing dataset' do
-      expect(dataset.number_of_residences).to eq(2)
+      expect(dataset.present_number_of_residences).to eq(2)
     end
 
     include_examples 'a dataset generator with file values'
@@ -87,7 +88,8 @@ RSpec.describe Transformer::DatasetGenerator do
       described_class.new(
         area: 'ameland',
         base_dataset: :nl,
-        number_of_residences: 2,
+        present_number_of_residences: 2,
+        number_of_inhabitants: 10,
         number_of_new_residences: 1.5
       )
     end
@@ -133,7 +135,8 @@ RSpec.describe Transformer::DatasetGenerator do
       described_class.new({
         area: 'test',
         base_dataset: parent.key.to_s,
-        number_of_residences: 25,
+        present_number_of_residences: 25,
+        number_of_inhabitants: 100,
         number_of_new_residences: 24.5,
         number_of_cars: 100,
         # In this test setup this attribute will be multiplied by 5 in order
@@ -150,7 +153,7 @@ RSpec.describe Transformer::DatasetGenerator do
     end
 
     it 'sets the number of residences' do
-      expect(dataset.number_of_residences).to eq(25)
+      expect(dataset.present_number_of_residences).to eq(25)
     end
 
     it 'sets the number of cars' do
@@ -176,7 +179,8 @@ RSpec.describe Transformer::DatasetGenerator do
       described_class.new(
         area: 'test',
         base_dataset: :nl,
-        number_of_residences: 2,
+        present_number_of_residences: 2,
+        number_of_inhabitants: 10,
         number_of_new_residences: 1.5
       )
     end
