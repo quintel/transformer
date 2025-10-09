@@ -135,14 +135,11 @@ RSpec.describe Transformer::DatasetGenerator do
       described_class.new({
         area: 'test',
         base_dataset: parent.key.to_s,
-        present_number_of_residences: 25,
         number_of_inhabitants: 100,
-        number_of_new_residences: 24.5,
-        number_of_cars: 100,
+        number_of_cars: 100
         # In this test setup this attribute will be multiplied by 5 in order
         # to end up with a demand for households_final_demand_electricity
         # of 25
-        etlocal_households_test: 5
       }.merge(params)).generate
 
       Atlas::Dataset.find(:test)
@@ -152,23 +149,12 @@ RSpec.describe Transformer::DatasetGenerator do
       expect(Atlas::Dataset::Derived.find(:test)).not_to be_nil
     end
 
-    it 'sets the number of residences' do
-      expect(dataset.present_number_of_residences).to eq(25)
-    end
-
     it 'sets the number of cars' do
       expect(dataset.number_of_cars).to eq(100)
     end
 
-    it 'sets the final demand of households with a graph method' do
-      expect(dataset.graph_values.values).to eq(
-        'households_final_demand_electricity' => {
-          'demand' => 42
-        },
-        'households_final_demand_for_hot_water_electricity' => {
-          'demand' => 210
-        }
-      )
+    it 'sets the number of inhabitants' do
+      expect(dataset.number_of_inhabitants).to eq(100)
     end
 
     include_examples 'a dataset generator with file values'
@@ -179,9 +165,7 @@ RSpec.describe Transformer::DatasetGenerator do
       described_class.new(
         area: 'test',
         base_dataset: :nl,
-        present_number_of_residences: 2,
-        number_of_inhabitants: 10,
-        number_of_new_residences: 1.5
+        number_of_inhabitants: 10
       )
     end
 

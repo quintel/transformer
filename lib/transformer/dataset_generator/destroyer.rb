@@ -5,6 +5,9 @@ module Transformer
       module_function
 
       def call(cast)
+        # Don't destroy a dataset if it's a full dataset
+        return false if cast.area.to_s == cast.base_dataset.to_s
+
         Atlas::Dataset::Derived.exists?(cast.area) &&
           Atlas::Dataset::Derived.find(cast.area).destroy!
       end
