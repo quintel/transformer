@@ -8,8 +8,8 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rubel',    ref: 'ad3d44e', github: 'quintel/rubel'
-gem 'refinery', ref: 'c39c9b1', github: 'quintel/refinery'
-gem 'atlas',    ref: 'd8b096b', github: 'quintel/atlas'
+gem 'refinery', ref: 'dc1485d', github: 'quintel/refinery' # TODO: update ref once merged to master
+gem 'atlas',    ref: '4086af7', github: 'quintel/atlas' # TODO: update ref once merged to master
 
 group :development do
   gem 'rubocop'
