@@ -7,9 +7,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rubel',    ref: 'ad3d44e', github: 'quintel/rubel'
-gem 'refinery', ref: 'c39c9b1', github: 'quintel/refinery'
-gem 'atlas',    ref: 'd8b096b', github: 'quintel/atlas'
+gem 'rubel',    ref: '9fe7010', github: 'quintel/rubel'
+gem 'refinery', ref: '36b8e34', github: 'quintel/refinery'
+gem 'atlas',    ref: 'f0fb6be', github: 'quintel/atlas'
 
 group :development do
   gem 'rubocop'
@@ -19,6 +19,6 @@ end
 
 group :test do
   gem 'rspec'
-  gem 'simplecov'
+  gem 'simplecov', require: false
   gem 'byebug'
 end
