@@ -7,9 +7,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rubel',    ref: '32ae1ea', github: 'quintel/rubel' #TODO: update once merged to master
-gem 'refinery', ref: 'c308c6d', github: 'quintel/refinery' #TODO: update once merged to master
-gem 'atlas',    ref: '89b1591', github: 'quintel/atlas' #TODO: update once merged to master
+gem 'rubel',    ref: '9fe7010', github: 'quintel/rubel'
+gem 'refinery', ref: '36b8e34', github: 'quintel/refinery'
+gem 'atlas',    ref: 'f0fb6be', github: 'quintel/atlas'
 
 group :development do
   gem 'rubocop'
