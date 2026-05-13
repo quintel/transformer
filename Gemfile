@@ -9,7 +9,7 @@ end
 
 gem 'rubel',    ref: '9fe7010', github: 'quintel/rubel'
 gem 'refinery', ref: '36b8e34', github: 'quintel/refinery'
-gem 'atlas',    ref: 'f0fb6be', github: 'quintel/atlas'
+gem 'atlas',    ref: 'f2e3f0d', github: 'quintel/atlas'
 
 group :development do
   gem 'rubocop'
