@@ -1,0 +1,2 @@
+# Simple molecule node for testing basic demand transformation
+- graph_methods = [demand]

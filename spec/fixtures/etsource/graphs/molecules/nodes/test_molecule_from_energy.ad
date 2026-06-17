@@ -1,0 +1,5 @@
+# Molecule node with from_energy connection
+- graph_methods = [demand]
+- from_energy.source = households_final_demand_electricity
+- from_energy.direction = output
+- from_energy.conversion.electricity = 1.0

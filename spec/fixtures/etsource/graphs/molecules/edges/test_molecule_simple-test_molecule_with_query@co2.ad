@@ -1,0 +1,2 @@
+# Molecule edge for testing parent_share transformation
+- graph_methods = [parent_share]

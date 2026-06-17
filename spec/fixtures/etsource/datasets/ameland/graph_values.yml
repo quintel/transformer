@@ -3,3 +3,11 @@ households_final_demand_for_hot_water_electricity:
   demand: 210
 households_final_demand_electricity:
   demand: 42
+test_molecule_simple:
+  demand: 50.0
+test_molecule_with_query:
+  demand: 100.0
+test_molecule_from_energy:
+  demand: 75.0
+test_molecule_simple-test_molecule_with_query@co2:
+  parent_share: 0.5
