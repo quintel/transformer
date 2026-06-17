@@ -56,6 +56,36 @@ RSpec.shared_examples 'a dataset generator with file values' do
   end
 end
 
+RSpec.shared_examples 'a dataset generator with molecule nodes' do
+  context 'with basic molecule node demand' do
+    it 'transforms molecule node demand to graph_values' do
+      expect(dataset.graph_values.values['test_molecule_simple']).to eq({ 'demand' => 50.0 })
+    end
+  end
+
+  context 'with molecule node using sparse graph query' do
+    it 'executes sparse graph query for molecule demand' do
+      expect(dataset.graph_values.values['test_molecule_with_query']).to include('demand' => 100.0)
+    end
+  end
+
+  context 'with molecule edge parent_share' do
+    let(:params) { { test_molecule_simple_test_molecule_with_query_parent_share: 0.75 } }
+
+    it 'transforms molecule edge parent_share to graph_values' do
+      edge_key = 'test_molecule_simple-test_molecule_with_query@co2'
+      expect(dataset.graph_values.values[edge_key]).to eq({ 'parent_share' => 0.75 })
+    end
+  end
+
+  context 'with molecule node from_energy connection' do
+    it 'includes molecule node with cross-graph connection in graph_values' do
+      # Verifies that molecule nodes with from_energy attribute are included
+      expect(dataset.graph_values.values).to have_key('test_molecule_from_energy')
+    end
+  end
+end
+
 RSpec.describe Transformer::DatasetGenerator do
   describe 'existing datasets' do
     let(:params) { {} }
@@ -81,6 +111,7 @@ RSpec.describe Transformer::DatasetGenerator do
     end
 
     include_examples 'a dataset generator with file values'
+    include_examples 'a dataset generator with molecule nodes'
   end
 
   describe 'preserving files in an existing dataset' do
@@ -158,6 +189,7 @@ RSpec.describe Transformer::DatasetGenerator do
     end
 
     include_examples 'a dataset generator with file values'
+    include_examples 'a dataset generator with molecule nodes'
   end
 
   describe 'preserving non-existent files in a new dataset' do

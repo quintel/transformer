@@ -1,0 +1,4 @@
+# Molecule node with sparse graph query
+- use = energetic
+- graph_methods = [demand]
+~ demand = SPARSE()
